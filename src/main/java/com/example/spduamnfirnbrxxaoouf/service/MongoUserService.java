@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 public class MongoUserService {
     private static final Logger log = LoggerFactory.getLogger(MongoUserService.class);
 
-
     private MongoUserRepository mongoUserRepository;
 
     @Autowired
