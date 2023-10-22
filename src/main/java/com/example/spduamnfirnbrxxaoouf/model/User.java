@@ -1,18 +1,16 @@
 package com.example.spduamnfirnbrxxaoouf.model;
 
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@Entity(name = "user")
 public class User {
     @Id
-    public Long id;
+    public int id;
 
     public String name;
     public Date dateOfBirth;
