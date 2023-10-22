@@ -10,11 +10,8 @@ spring:
     hibernate.dll-auto: create
     generate-ddl: false
   flyway:
-    baseline-on-migrate: true
-    locations: classpath:db.migration
-    url: jdbc:postgresql://localhost:5432/postgres
-    user: postgres
-    password: password
+    locations:
+      - db/migration
   data:
     mongodb:
       host: localhost
