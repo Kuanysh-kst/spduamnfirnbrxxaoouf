@@ -1,0 +1,24 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: password
+  jpa:
+    show-sql: false
+    hibernate.dll-auto: create
+    generate-ddl: false
+  flyway:
+    baseline-on-migrate: true
+    locations: classpath:db.migration
+    url: jdbc:postgresql://localhost:5432/postgres
+    user: postgres
+    password: password
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: db
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration

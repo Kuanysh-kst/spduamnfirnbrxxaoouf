@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata6:/data/db
+  postgres:
+    image: "bitnami/postgresql:latest"
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRESQL_PASSWORD=password
+volumes:
+  dbdata6:
+  postgres_data:
