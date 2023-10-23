@@ -1,15 +1,15 @@
 package com.example.spduamnfirnbrxxaoouf.repository;
 
-import com.example.spduamnfirnbrxxaoouf.model.MongoUser;
+import com.example.spduamnfirnbrxxaoouf.model.MongoUserDTO;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface MongoUserRepository extends MongoRepository<MongoUser,Long> {
-    Optional<MongoUser> findByFirstPhone(String phone);
+public interface MongoUserRepository extends MongoRepository<MongoUserDTO,Long> {
+    Optional<MongoUserDTO> findByFirstPhone(String phone);
     boolean existsByFirstPhone(String phone);
 
-    Optional<MongoUser> findBySecondPhone(String phone);
+    Optional<MongoUserDTO> findBySecondPhone(String phone);
     boolean existsBySecondPhone(String phone);
 
     void deleteByFirstPhone(String phone);

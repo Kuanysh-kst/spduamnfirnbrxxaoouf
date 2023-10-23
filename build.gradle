@@ -32,6 +32,7 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql:42.5.4'
 	annotationProcessor 'org.projectlombok:lombok:1.18.26'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.1.0'
+	testImplementation 'org.testng:testng:7.7.0'
 }
 
 tasks.named('test') {

@@ -1,29 +1,29 @@
 package com.example.spduamnfirnbrxxaoouf.model;
 
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Document(collection  = "mongoUser")
 @Data
-public class MongoUser {
+@Entity(name = "users")
+public class UserDTO {
     @Id
     public Long id;
 
     public String name;
     public Date birth;
+
+    @Column(name = "first_phone")
     public String firstPhone;
+    @Column(name = "second_phone")
     public String secondPhone;
 
     @Override
     public String toString() {
-        return "MongoUser [" +
+        return "User [" +
                 "id=" + id +
                 ", name=" + name +
                 ", birth=" + birth +

@@ -1,7 +1,7 @@
 package com.example.spduamnfirnbrxxaoouf.controller;
 
 import com.example.spduamnfirnbrxxaoouf.filter.Filter;
-import com.example.spduamnfirnbrxxaoouf.model.MongoUser;
+import com.example.spduamnfirnbrxxaoouf.model.MongoUserDTO;
 import com.example.spduamnfirnbrxxaoouf.service.MongoUserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class MongoUserController {
     MongoUserServiceImpl mongoUserService;
 
     @GetMapping("{id}")
-    public Optional<MongoUser> findById(@PathVariable("id") int id) {
+    public Optional<MongoUserDTO> findById(@PathVariable("id") int id) {
 
         log.info("userMongo: " + mongoUserService.findById(id));
         return mongoUserService.findById(id);
@@ -28,37 +28,37 @@ public class MongoUserController {
 
 
     @GetMapping("/phone/one/{first_phone}")
-    public Optional<MongoUser> findByFirstPhone(@PathVariable("first_phone") String phoneNumber) {
+    public Optional<MongoUserDTO> findByFirstPhone(@PathVariable("first_phone") String phoneNumber) {
         log.info("MongoUser by phone number: " + mongoUserService.findByFirstPhone(phoneNumber));
         return mongoUserService.findByFirstPhone(phoneNumber);
     }
 
     @GetMapping("/phone/two/{second_phone}")
-    public Optional<MongoUser> findBySecondPhone(@PathVariable("second_phone") String phoneNumber) {
+    public Optional<MongoUserDTO> findBySecondPhone(@PathVariable("second_phone") String phoneNumber) {
         log.info("MongoUser by phone number: " + mongoUserService.findBySecondPhone(phoneNumber));
         return mongoUserService.findBySecondPhone(phoneNumber);
     }
 
     @GetMapping("/users")
-    public List<MongoUser> findAllUsers(Filter filter) {
+    public List<MongoUserDTO> findAllUsers(Filter filter) {
         int limit = filter.getLimit();
         int offset = filter.getOffset();
         return mongoUserService.findAllUsersWithPagination(limit, offset);
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<String> updateById(@PathVariable("id") Long id, @RequestBody MongoUser updatedUser) {
+    public ResponseEntity<String> updateById(@PathVariable("id") Long id, @RequestBody MongoUserDTO updatedUser) {
         log.info("id is :" + id);
         return mongoUserService.updateById(id, updatedUser);
     }
 
     @PutMapping("/phone/one/{first_phone}")
-    public ResponseEntity<String> updateByFirstPhone(@PathVariable("first_phone") String phoneNumber, @RequestBody MongoUser updatedUser) {
+    public ResponseEntity<String> updateByFirstPhone(@PathVariable("first_phone") String phoneNumber, @RequestBody MongoUserDTO updatedUser) {
         return mongoUserService.updateByFirstPhone(phoneNumber, updatedUser);
     }
 
     @PutMapping("/phone/two/{second_phone}")
-    public ResponseEntity<String> updateBySecondtPhone(@PathVariable("second_phone") String phoneNumber, @RequestBody MongoUser updatedUser) {
+    public ResponseEntity<String> updateBySecondtPhone(@PathVariable("second_phone") String phoneNumber, @RequestBody MongoUserDTO updatedUser) {
         return mongoUserService.updateBySecondPhone(phoneNumber, updatedUser);
     }
 

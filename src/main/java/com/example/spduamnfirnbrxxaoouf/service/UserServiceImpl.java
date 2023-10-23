@@ -1,7 +1,7 @@
 package com.example.spduamnfirnbrxxaoouf.service;
 
 import com.example.spduamnfirnbrxxaoouf.exception.ResourceNotFoundException;
-import com.example.spduamnfirnbrxxaoouf.model.User;
+import com.example.spduamnfirnbrxxaoouf.model.UserDTO;
 import com.example.spduamnfirnbrxxaoouf.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -27,12 +27,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findById(long id) {
+    public Optional<UserDTO> findById(long id) {
         return userRepository.findById(id);
     }
 
     @Override
-    public Optional<User> findByFirstPhone(String phone) {
+    public Optional<UserDTO> findByFirstPhone(String phone) {
         if (userRepository.existsByFirstPhone(phone)) {
             return userRepository.findByFirstPhone(phone);
         } else {
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findBySecondPhone(String phone) {
+    public Optional<UserDTO> findBySecondPhone(String phone) {
         if (userRepository.existsBySecondPhone(phone)) {
             return userRepository.findBySecondPhone(phone);
         } else {
@@ -50,9 +50,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAllUsersWithPagination(int limit, int offset) {
+    public List<UserDTO> findAllUsersWithPagination(int limit, int offset) {
         Pageable pageable = PageRequest.of(offset, limit);
-        Page<User> page = userRepository.findAll(pageable);
+        Page<UserDTO> page = userRepository.findAll(pageable);
         return page.getContent();
     }
 
@@ -95,10 +95,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<String> updateById(Long id, User updatedUser) {
-        Optional<User> existingUser = userRepository.findById(id);
+    public ResponseEntity<String> updateById(Long id, UserDTO updatedUser) {
+        Optional<UserDTO> existingUser = userRepository.findById(id);
         if (existingUser.isPresent()) {
-            User user = existingUser.get();
+            UserDTO user = existingUser.get();
             user.setName(updatedUser.getName());
             user.setBirth(updatedUser.getBirth());
             user.setFirstPhone(updatedUser.getFirstPhone());
@@ -111,10 +111,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<String> updateByFirstPhone(String phoneNumber, User updatedUser) {
-        Optional<User> existingUser = userRepository.findByFirstPhone(phoneNumber);
+    public ResponseEntity<String> updateByFirstPhone(String phoneNumber, UserDTO updatedUser) {
+        Optional<UserDTO> existingUser = userRepository.findByFirstPhone(phoneNumber);
         if (existingUser.isPresent()) {
-            User user = existingUser.get();
+            UserDTO user = existingUser.get();
             user.setName(updatedUser.getName());
             user.setBirth(updatedUser.getBirth());
             user.setFirstPhone(updatedUser.getFirstPhone());
@@ -127,10 +127,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<String> updateBySecondPhone(String phoneNumber, User updatedUser) {
-        Optional<User> existingUser = userRepository.findBySecondPhone(phoneNumber);
+    public ResponseEntity<String> updateBySecondPhone(String phoneNumber, UserDTO updatedUser) {
+        Optional<UserDTO> existingUser = userRepository.findBySecondPhone(phoneNumber);
         if (existingUser.isPresent()) {
-            User user = existingUser.get();
+            UserDTO user = existingUser.get();
             user.setName(updatedUser.getName());
             user.setBirth(updatedUser.getBirth());
             user.setFirstPhone(updatedUser.getFirstPhone());

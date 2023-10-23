@@ -1,7 +1,7 @@
 package com.example.spduamnfirnbrxxaoouf.service;
 
 import com.example.spduamnfirnbrxxaoouf.exception.ResourceNotFoundException;
-import com.example.spduamnfirnbrxxaoouf.model.MongoUser;
+import com.example.spduamnfirnbrxxaoouf.model.MongoUserDTO;
 import com.example.spduamnfirnbrxxaoouf.repository.MongoUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +27,12 @@ public class MongoUserServiceImpl implements MongoUserService{
     }
 
     @Override
-    public Optional<MongoUser> findById(long id) {
+    public Optional<MongoUserDTO> findById(long id) {
         return mongoUserRepository.findById(id);
     }
 
     @Override
-    public Optional<MongoUser> findByFirstPhone(String phone) {
+    public Optional<MongoUserDTO> findByFirstPhone(String phone) {
         if (mongoUserRepository.existsByFirstPhone(phone)) {
             return mongoUserRepository.findByFirstPhone(phone);
         } else {
@@ -57,7 +57,7 @@ public class MongoUserServiceImpl implements MongoUserService{
     }
 
     @Override
-    public Optional<MongoUser> findBySecondPhone(String phone) {
+    public Optional<MongoUserDTO> findBySecondPhone(String phone) {
         if (mongoUserRepository.existsBySecondPhone(phone)) {
             return mongoUserRepository.findBySecondPhone(phone);
         } else {
@@ -66,9 +66,9 @@ public class MongoUserServiceImpl implements MongoUserService{
     }
 
     @Override
-    public List<MongoUser> findAllUsersWithPagination(int limit, int offset) {
+    public List<MongoUserDTO> findAllUsersWithPagination(int limit, int offset) {
         Pageable pageable = PageRequest.of(offset, limit);
-        Page<MongoUser> page = mongoUserRepository.findAll(pageable);
+        Page<MongoUserDTO> page = mongoUserRepository.findAll(pageable);
         return page.getContent();
     }
 
@@ -93,10 +93,10 @@ public class MongoUserServiceImpl implements MongoUserService{
     }
 
     @Override
-    public ResponseEntity<String> updateById(Long id, MongoUser updatedUser) {
-        Optional<MongoUser> existingUser = mongoUserRepository.findById(id);
+    public ResponseEntity<String> updateById(Long id, MongoUserDTO updatedUser) {
+        Optional<MongoUserDTO> existingUser = mongoUserRepository.findById(id);
         if (existingUser.isPresent()) {
-            MongoUser mongoUser = existingUser.get();
+            MongoUserDTO mongoUser = existingUser.get();
             mongoUser.setName(updatedUser.getName());
             mongoUser.setBirth(updatedUser.getBirth());
             mongoUser.setFirstPhone(updatedUser.getFirstPhone());
@@ -109,10 +109,10 @@ public class MongoUserServiceImpl implements MongoUserService{
     }
 
     @Override
-    public ResponseEntity<String> updateByFirstPhone(String phoneNumber, MongoUser updatedUser) {
-        Optional<MongoUser> existingUser = mongoUserRepository.findByFirstPhone(phoneNumber);
+    public ResponseEntity<String> updateByFirstPhone(String phoneNumber, MongoUserDTO updatedUser) {
+        Optional<MongoUserDTO> existingUser = mongoUserRepository.findByFirstPhone(phoneNumber);
         if (existingUser.isPresent()) {
-            MongoUser mongoUser = existingUser.get();
+            MongoUserDTO mongoUser = existingUser.get();
             mongoUser.setName(updatedUser.getName());
             mongoUser.setBirth(updatedUser.getBirth());
             mongoUser.setSecondPhone(updatedUser.getSecondPhone());
@@ -124,10 +124,10 @@ public class MongoUserServiceImpl implements MongoUserService{
     }
 
     @Override
-    public ResponseEntity<String> updateBySecondPhone(String phoneNumber, MongoUser updatedUser) {
-        Optional<MongoUser> existingUser = mongoUserRepository.findBySecondPhone(phoneNumber);
+    public ResponseEntity<String> updateBySecondPhone(String phoneNumber, MongoUserDTO updatedUser) {
+        Optional<MongoUserDTO> existingUser = mongoUserRepository.findBySecondPhone(phoneNumber);
         if (existingUser.isPresent()) {
-            MongoUser mongoUser = existingUser.get();
+            MongoUserDTO mongoUser = existingUser.get();
             mongoUser.setName(updatedUser.getName());
             mongoUser.setBirth(updatedUser.getBirth());
             mongoUser.setSecondPhone(updatedUser.getSecondPhone());

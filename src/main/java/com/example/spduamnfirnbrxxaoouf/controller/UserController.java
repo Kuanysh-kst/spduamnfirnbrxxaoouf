@@ -1,7 +1,7 @@
 package com.example.spduamnfirnbrxxaoouf.controller;
 
 import com.example.spduamnfirnbrxxaoouf.filter.Filter;
-import com.example.spduamnfirnbrxxaoouf.model.User;
+import com.example.spduamnfirnbrxxaoouf.model.UserDTO;
 import com.example.spduamnfirnbrxxaoouf.service.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,43 +20,43 @@ public class UserController {
     UserServiceImpl service;
 
     @GetMapping("{id}")
-    public Optional<User> findById(@PathVariable("id") int id) {
+    public Optional<UserDTO> findById(@PathVariable("id") int id) {
         log.info("PGUser: " + service.findById(id));
         return service.findById(id);
     }
 
     @GetMapping("/phone/one/{first_phone}")
-    public Optional<User> findByFirstPhone(@PathVariable("first_phone") String phoneNumber) {
+    public Optional<UserDTO> findByFirstPhone(@PathVariable("first_phone") String phoneNumber) {
         log.info("PGUser by phone number: " + service.findByFirstPhone(phoneNumber));
         return service.findByFirstPhone(phoneNumber);
     }
 
     @GetMapping("/phone/two/{second_phone}")
-    public Optional<User> findBySecondPhone(@PathVariable("second_phone") String phoneNumber) {
+    public Optional<UserDTO> findBySecondPhone(@PathVariable("second_phone") String phoneNumber) {
         log.info("PGUser by phone number: " + service.findBySecondPhone(phoneNumber));
         return service.findBySecondPhone(phoneNumber);
     }
 
     @GetMapping("/users")
-    public List<User> findAllUsers(Filter filter) {
+    public List<UserDTO> findAllUsers(Filter filter) {
         int limit = filter.getLimit();
         int offset = filter.getOffset();
         return service.findAllUsersWithPagination(limit, offset);
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<String> updateById(@PathVariable("id") Long id, @RequestBody User updatedUser) {
+    public ResponseEntity<String> updateById(@PathVariable("id") Long id, @RequestBody UserDTO updatedUser) {
         log.info("id is :" + id);
         return service.updateById(id, updatedUser);
     }
 
     @PutMapping("/phone/one/{first_phone}")
-    public ResponseEntity<String> updateByFirstPhone(@PathVariable("first_phone") String phoneNumber, @RequestBody User updatedUser) {
+    public ResponseEntity<String> updateByFirstPhone(@PathVariable("first_phone") String phoneNumber, @RequestBody UserDTO updatedUser) {
         return service.updateByFirstPhone(phoneNumber, updatedUser);
     }
 
     @PutMapping("/phone/two/{second_phone}")
-    public ResponseEntity<String> updateBySecondtPhone(@PathVariable("second_phone") String phoneNumber, @RequestBody User updatedUser) {
+    public ResponseEntity<String> updateBySecondtPhone(@PathVariable("second_phone") String phoneNumber, @RequestBody UserDTO updatedUser) {
         return service.updateBySecondPhone(phoneNumber, updatedUser);
     }
 
