@@ -2,7 +2,7 @@ package com.example.spduamnfirnbrxxaoouf.controller;
 
 import com.example.spduamnfirnbrxxaoouf.filter.Filter;
 import com.example.spduamnfirnbrxxaoouf.model.User;
-import com.example.spduamnfirnbrxxaoouf.service.UserServiceIml;
+import com.example.spduamnfirnbrxxaoouf.service.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    UserServiceIml service;
+    UserServiceImpl service;
 
     @GetMapping("{id}")
     public Optional<User> findById(@PathVariable("id") int id) {

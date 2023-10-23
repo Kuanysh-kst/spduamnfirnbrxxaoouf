@@ -17,7 +17,7 @@ public class MongoUser {
     public Long id;
 
     public String name;
-    public Date dateOfBirth;
+    public Date birth;
     public String firstPhone;
     public String secondPhone;
 
@@ -26,7 +26,7 @@ public class MongoUser {
         return "MongoUser [" +
                 "id=" + id +
                 ", name=" + name +
-                ", dateOfBirth=" + dateOfBirth +
+                ", birth=" + birth +
                 ", firstPhoneNumber=" + firstPhone +
                 ", secondPhoneNumber=" + secondPhone +
                 ']';

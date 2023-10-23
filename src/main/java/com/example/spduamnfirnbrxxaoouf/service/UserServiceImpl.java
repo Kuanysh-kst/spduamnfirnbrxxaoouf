@@ -18,11 +18,11 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class UserServiceIml implements UserService {
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Autowired
-    public UserServiceIml(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
