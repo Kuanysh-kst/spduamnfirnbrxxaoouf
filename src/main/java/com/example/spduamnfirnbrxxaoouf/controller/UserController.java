@@ -44,6 +44,22 @@ public class UserController {
         return service.findAllUsersWithPagination(limit, offset);
     }
 
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<String> updateById(@PathVariable("id") Long id, @RequestBody User updatedUser) {
+        log.info("id is :" + id);
+        return service.updateById(id, updatedUser);
+    }
+
+    @PutMapping("/phone/one/{first_phone}")
+    public ResponseEntity<String> updateByFirstPhone(@PathVariable("first_phone") String phoneNumber, @RequestBody User updatedUser) {
+        return service.updateByFirstPhone(phoneNumber, updatedUser);
+    }
+
+    @PutMapping("/phone/two/{second_phone}")
+    public ResponseEntity<String> updateBySecondtPhone(@PathVariable("second_phone") String phoneNumber, @RequestBody User updatedUser) {
+        return service.updateBySecondPhone(phoneNumber, updatedUser);
+    }
+
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteById(@PathVariable("id") int id) {
         return service.deleteById(id);
@@ -58,4 +74,5 @@ public class UserController {
     public ResponseEntity<String> deleteBySecondPhone(@PathVariable("second_phone") String phoneNumber) {
         return service.deleteBySecondPhone(phoneNumber);
     }
+
 }

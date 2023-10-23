@@ -2,7 +2,6 @@ package com.example.spduamnfirnbrxxaoouf.service;
 
 import com.example.spduamnfirnbrxxaoouf.exception.ResourceNotFoundException;
 import com.example.spduamnfirnbrxxaoouf.model.MongoUser;
-import com.example.spduamnfirnbrxxaoouf.model.User;
 import com.example.spduamnfirnbrxxaoouf.repository.MongoUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

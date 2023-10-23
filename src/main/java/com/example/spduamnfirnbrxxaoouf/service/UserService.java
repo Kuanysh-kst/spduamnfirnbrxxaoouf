@@ -14,4 +14,7 @@ public interface UserService {
     List<User> findAllUsersWithPagination(int limit, int offset);
     ResponseEntity<String> deleteByFirstPhone(String phoneNumber);
     ResponseEntity<String> deleteBySecondPhone(String phoneNumber);
+    ResponseEntity<String> updateById(Long id, User updatedUser);
+    ResponseEntity<String> updateByFirstPhone(String phoneNumber, User updatedUser);
+    ResponseEntity<String> updateBySecondPhone(String phoneNumber, User updatedUser);
 }

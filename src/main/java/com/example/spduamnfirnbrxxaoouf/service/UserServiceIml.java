@@ -93,4 +93,52 @@ public class UserServiceIml implements UserService {
             return new ResponseEntity<>("User with second phone number " + phoneNumber + " not found", HttpStatus.NOT_FOUND);
         }
     }
+
+    @Override
+    public ResponseEntity<String> updateById(Long id, User updatedUser) {
+        Optional<User> existingUser = userRepository.findById(id);
+        if (existingUser.isPresent()) {
+            User user = existingUser.get();
+            user.setName(updatedUser.getName());
+            user.setBirth(updatedUser.getBirth());
+            user.setFirstPhone(updatedUser.getFirstPhone());
+            user.setSecondPhone(updatedUser.getSecondPhone());
+            userRepository.save(user);
+            return new ResponseEntity<>("User with ID " + id + " updated successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("User with ID " + id + " not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @Override
+    public ResponseEntity<String> updateByFirstPhone(String phoneNumber, User updatedUser) {
+        Optional<User> existingUser = userRepository.findByFirstPhone(phoneNumber);
+        if (existingUser.isPresent()) {
+            User user = existingUser.get();
+            user.setName(updatedUser.getName());
+            user.setBirth(updatedUser.getBirth());
+            user.setFirstPhone(updatedUser.getFirstPhone());
+            user.setSecondPhone(updatedUser.getSecondPhone());
+            userRepository.save(user);
+            return new ResponseEntity<>("User with first phone number " + phoneNumber + " updated successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("User with first phone number " + phoneNumber + " not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @Override
+    public ResponseEntity<String> updateBySecondPhone(String phoneNumber, User updatedUser) {
+        Optional<User> existingUser = userRepository.findBySecondPhone(phoneNumber);
+        if (existingUser.isPresent()) {
+            User user = existingUser.get();
+            user.setName(updatedUser.getName());
+            user.setBirth(updatedUser.getBirth());
+            user.setFirstPhone(updatedUser.getFirstPhone());
+            user.setSecondPhone(updatedUser.getSecondPhone());
+            userRepository.save(user);
+            return new ResponseEntity<>("User with second phone number " + phoneNumber + " updated successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("User with second phone number " + phoneNumber + " not found", HttpStatus.NOT_FOUND);
+        }
+    }
 }
