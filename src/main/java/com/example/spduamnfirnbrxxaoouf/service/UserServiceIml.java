@@ -3,6 +3,7 @@ package com.example.spduamnfirnbrxxaoouf.service;
 import com.example.spduamnfirnbrxxaoouf.exception.ResourceNotFoundException;
 import com.example.spduamnfirnbrxxaoouf.model.User;
 import com.example.spduamnfirnbrxxaoouf.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,22 +32,6 @@ public class UserServiceIml implements UserService {
     }
 
     @Override
-    public ResponseEntity<String> deleteById(long id) {
-        try {
-            if (userRepository.existsById(id)) {
-                userRepository.deleteById(id);
-                return new ResponseEntity<>("User with id " + id + " has been deleted", HttpStatus.OK);
-            } else {
-                log.error("User not found with id : " + id);
-                return new ResponseEntity<>("User not found with id : " + id, HttpStatus.NOT_FOUND);
-            }
-        } catch (ResourceNotFoundException e) {
-            log.error("Error occurred with id : " + id);
-            return new ResponseEntity<>("User not found with id : " + id, HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @Override
     public Optional<User> findByFirstPhone(String phone) {
         if (userRepository.existsByFirstPhone(phone)) {
             return userRepository.findByFirstPhone(phone);
@@ -69,5 +54,43 @@ public class UserServiceIml implements UserService {
         Pageable pageable = PageRequest.of(offset, limit);
         Page<User> page = userRepository.findAll(pageable);
         return page.getContent();
+    }
+
+    @Override
+    public ResponseEntity<String> deleteById(long id) {
+        try {
+            if (userRepository.existsById(id)) {
+                userRepository.deleteById(id);
+                return new ResponseEntity<>("User with id " + id + " has been deleted", HttpStatus.OK);
+            } else {
+                log.error("User not found with id : " + id);
+                return new ResponseEntity<>("User not found with id : " + id, HttpStatus.NOT_FOUND);
+            }
+        } catch (ResourceNotFoundException e) {
+            log.error("Error occurred with id : " + id);
+            return new ResponseEntity<>("User not found with id : " + id, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @Transactional
+    @Override
+    public ResponseEntity<String> deleteByFirstPhone(String phoneNumber) {
+        if (userRepository.existsByFirstPhone(phoneNumber)) {
+            userRepository.deleteByFirstPhone(phoneNumber);
+            return new ResponseEntity<>("User with first phone number " + phoneNumber + " deleted successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("User with first phone number " + phoneNumber + " not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @Transactional
+    @Override
+    public ResponseEntity<String> deleteBySecondPhone(String phoneNumber) {
+        if (userRepository.existsBySecondPhone(phoneNumber)) {
+            userRepository.deleteBySecondPhone(phoneNumber);
+            return new ResponseEntity<>("User with second phone number " + phoneNumber + " deleted successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("User with second phone number " + phoneNumber + " not found", HttpStatus.NOT_FOUND);
+        }
     }
 }

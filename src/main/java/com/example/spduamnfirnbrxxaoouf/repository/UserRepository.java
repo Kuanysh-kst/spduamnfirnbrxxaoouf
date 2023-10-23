@@ -13,4 +13,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     Optional<User> findBySecondPhone(String phone);
     boolean existsBySecondPhone(String phone);
+
+    void deleteByFirstPhone(String phone);
+    void deleteBySecondPhone(String phone);
 }

@@ -48,4 +48,14 @@ public class UserController {
     public ResponseEntity<String> deleteById(@PathVariable("id") int id) {
         return service.deleteById(id);
     }
+
+    @DeleteMapping("/phone/one/{first_phone}")
+    public ResponseEntity<String> deleteByFirstPhone(@PathVariable("first_phone") String phoneNumber) {
+        return service.deleteByFirstPhone(phoneNumber);
+    }
+
+    @DeleteMapping("/phone/two/{second_phone}")
+    public ResponseEntity<String> deleteBySecondPhone(@PathVariable("second_phone") String phoneNumber) {
+        return service.deleteBySecondPhone(phoneNumber);
+    }
 }
