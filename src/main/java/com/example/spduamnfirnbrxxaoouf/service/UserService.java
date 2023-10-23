@@ -3,6 +3,7 @@ package com.example.spduamnfirnbrxxaoouf.service;
 import com.example.spduamnfirnbrxxaoouf.model.User;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
@@ -10,4 +11,5 @@ public interface UserService {
     Optional<User> findById(long id);
     ResponseEntity<String> deleteById(long id);
     Optional<User> findBySecondPhone(String phone);
+    List<User> findAllUsersWithPagination(int limit, int offset);
 }
