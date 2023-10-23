@@ -15,6 +15,7 @@ File/Project Structure...
 Settings.../Build,.../Build Tools/Gradle
 ```
 и там выбираем corretto-17 Amazon Corretto
+* После этого Intellij EDEA должна подгрузить все зависемости
 
 ## Как запустить проек локально:
 ### 2.1 У вас должен быть установлен docker, для запуска докера в проекте введите 
@@ -63,6 +64,7 @@ href	"http://localhost:8080/profile"
 ```
 spduamnfirnbrxxaoouf/postman/testRequests.postman_collection.json
 ```
+* Импортируете файл в свой Postman и проверяете.
 # Как подключится к базе данных
 Перед подключением нужно обязательно сделать docker-compose up в проекте
 ### 3.1 PostgreSql
