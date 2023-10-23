@@ -2,17 +2,19 @@ package com.example.spduamnfirnbrxxaoouf.service;
 
 import com.example.spduamnfirnbrxxaoouf.exception.ResourceNotFoundException;
 import com.example.spduamnfirnbrxxaoouf.model.MongoUser;
+import com.example.spduamnfirnbrxxaoouf.model.User;
 import com.example.spduamnfirnbrxxaoouf.repository.MongoUserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+@Slf4j
 @Service("userMongoService")
 public class MongoUserService {
-    private static final Logger log = LoggerFactory.getLogger(MongoUserService.class);
 
     private MongoUserRepository mongoUserRepository;
 
@@ -21,15 +23,16 @@ public class MongoUserService {
         this.mongoUserRepository = repository;
     }
 
-    public MongoUser findById(int id) {
-        return mongoUserRepository.findById(id);
+    public MongoUser findById(long id) {
+        Optional<MongoUser> optionalUser = mongoUserRepository.findById(id);
+        return optionalUser.orElse(null);
     }
 
     public MongoUser findByPhone(String phone) {
         return mongoUserRepository.findByFirstPhone(phone);
     }
 
-    public ResponseEntity<String> deleteById(int id) {
+    public ResponseEntity<String> deleteById(long id) {
         try {
             if (mongoUserRepository.existsById(id)) {
                 mongoUserRepository.deleteById(id);

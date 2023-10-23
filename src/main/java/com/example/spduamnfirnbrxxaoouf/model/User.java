@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity(name = "users")
 public class User {
     @Id
-    public int id;
+    public Long id;
 
     public String name;
     public Date birth;
