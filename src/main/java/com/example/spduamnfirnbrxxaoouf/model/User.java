@@ -1,5 +1,6 @@
 package com.example.spduamnfirnbrxxaoouf.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -7,14 +8,17 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@Entity(name = "user")
+@Entity(name = "users")
 public class User {
     @Id
     public int id;
 
     public String name;
-    public Date dateOfBirth;
+    public Date birth;
+
+    @Column(name = "first_phone")
     public String firstPhone;
+    @Column(name = "second_phone")
     public String secondPhone;
 
     @Override
@@ -22,7 +26,7 @@ public class User {
         return "User [" +
                 "id=" + id +
                 ", name=" + name +
-                ", dateOfBirth=" + dateOfBirth +
+                ", birth=" + birth +
                 ", firstPhoneNumber=" + firstPhone +
                 ", secondPhoneNumber=" + secondPhone +
                 ']';
